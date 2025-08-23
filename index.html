@@ -109,9 +109,9 @@
       <nav aria-label="Primary">
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#next-projects">Next Projects</a></li>
-          <li><a href="#tracker">Track</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#connect">Connect</a></li>
         </ul>
       </nav>
     </div>
@@ -149,24 +149,27 @@
           </div>
         </div>
         <div class="card project">
-          <div class="kicker">Tools</div>
-          <div class="title">My Stack</div>
-          <p>HTML, CSS, JavaScript, a little Java + C. VS Code + Git. Keeping it simple and fast.</p>
-          <div class="chips">
-            <span class="chip">No Frameworks</span>
-            <span class="chip">Accessible</span>
-            <span class="chip">Mobile-first</span>
+          <div class="kicker">Skills</div>
+          <div class="title">Core Technologies</div>
+          <p>I'm focusing on building a strong foundation in core programming languages and web technologies.</p>
+           <div class="chips">
+            <span class="chip">Java</span>
+            <span class="chip">C</span>
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Git & GitHub</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ====== Next Projects ====== -->
-  <section id="next-projects">
+  <!-- ====== Projects ====== -->
+  <section id="projects">
     <div class="wrap">
-      <div class="kicker">Next Projects</div>
-      <h2>Upcoming builds</h2>
+      <div class="kicker">Projects</div>
+      <h2>Current & Upcoming Builds</h2>
       <div class="grid cols-3">
         <article class="card project" aria-labelledby="fed-title">
           <div class="badges"><span class="chip" title="High Priority">High ⚡</span><span class="chip">Web</span></div>
@@ -198,52 +201,23 @@
     </div>
   </section>
 
-  <!-- ====== Tracker ====== -->
-  <section id="tracker">
-    <div class="wrap card tracker" aria-labelledby="tracker-title">
-      <div class="kicker">Track</div>
-      <h2 id="tracker-title">Project Tracker</h2>
-      <table role="table" aria-label="Project tracker">
-        <thead>
-          <tr><th>Task</th><th>Status</th><th>Notes</th></tr>
-        </thead>
-        <tbody id="taskRows">
-          <tr>
-            <td>Define FED KIIT problem & scope</td>
-            <td><input type="checkbox" data-id="t1" aria-label="Completed"/></td>
-            <td contenteditable="true" data-note="t1" aria-label="Notes"></td>
-          </tr>
-          <tr>
-            <td>Sketch wireframes</td>
-            <td><input type="checkbox" data-id="t2"/></td>
-            <td contenteditable="true" data-note="t2"></td>
-          </tr>
-          <tr>
-            <td>Build MVP</td>
-            <td><input type="checkbox" data-id="t3"/></td>
-            <td contenteditable="true" data-note="t3"></td>
-          </tr>
-          <tr>
-            <td>Write README & docs</td>
-            <td><input type="checkbox" data-id="t4"/></td>
-            <td contenteditable="true" data-note="t4"></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="actions">
-        <button id="addRow">Add Row</button>
-        <button id="exportJson" title="Download your tracker data">Export JSON</button>
-        <span style="margin-left:auto; color:var(--muted); font-size:12px">Data saves locally in your browser</span>
+  <!-- ====== Blog ====== -->
+  <section id="blog">
+    <div class="wrap">
+      <div class="kicker">Blog</div>
+      <h2>Thoughts & Articles</h2>
+      <div class="card" style="padding:18px; text-align:center;">
+        <p>Coming Soon! I'll be writing about my journey learning to code, project deep-dives, and tech I'm excited about.</p>
       </div>
     </div>
   </section>
 
-  <!-- ====== Contact ====== -->
-  <section id="contact">
+  <!-- ====== Connect ====== -->
+  <section id="connect">
     <div class="wrap grid cols-2">
       <div class="card" style="padding:18px">
-        <div class="kicker">Contact</div>
-        <h2>Say hi</h2>
+        <div class="kicker">Connect</div>
+        <h2>Get in Touch</h2>
         <p>Want to collaborate or review code? Ping me. Replace the placeholders below with your real links.</p>
         <ul>
           <li>Email: <a href="mailto:hello@suryansh.dev">hello@suryansh.dev</a> (placeholder)</li>
@@ -269,58 +243,13 @@
   </footer>
 
   <script>
-    // ====== Tiny JS: uptime, year, tracker persistence, export, add-row ======
+    // ====== Tiny JS: uptime, year ======
     (function(){
       const started = '2025-08-12T00:00:00+05:30'; // launch date; adjust if needed
       const msPerDay = 24*60*60*1000;
       const days = Math.max(0, Math.floor((Date.now() - new Date(started).getTime())/msPerDay));
       document.getElementById('uptimeDays').textContent = days;
       document.getElementById('year').textContent = new Date().getFullYear();
-
-      const storeKey = 'sy-tracker-v1';
-      const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
-
-      function load(){
-        try{ return JSON.parse(localStorage.getItem(storeKey)||'{}'); }
-        catch{ return {}; }
-      }
-      function save(data){ localStorage.setItem(storeKey, JSON.stringify(data)); }
-
-      function syncFromStore(){
-        const data = load();
-        $$('#taskRows input[type="checkbox"]').forEach(cb=>{ cb.checked = !!data[cb.dataset.id]; });
-        $$('#taskRows [data-note]').forEach(td=>{ td.textContent = (data['note:'+td.dataset.note]||''); });
-      }
-      function syncToStore(){
-        const data = load();
-        $$('#taskRows input[type="checkbox"]').forEach(cb=>data[cb.dataset.id]=cb.checked);
-        $$('#taskRows [data-note]').forEach(td=>data['note:'+td.dataset.note]=td.textContent.trim());
-        save(data);
-      }
-
-      document.getElementById('taskRows').addEventListener('input', syncToStore);
-      document.getElementById('taskRows').addEventListener('change', syncToStore);
-
-      document.getElementById('exportJson').addEventListener('click', ()=>{
-        const blob = new Blob([localStorage.getItem(storeKey)||'{}'], {type:'application/json'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'suryansh-tracker.json';
-        a.click();
-        URL.revokeObjectURL(a.href);
-      });
-
-      document.getElementById('addRow').addEventListener('click', ()=>{
-        const tbody = document.getElementById('taskRows');
-        const id = 't'+Math.random().toString(36).slice(2,7);
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td contenteditable="true">New task</td>
-                        <td><input type="checkbox" data-id="${id}"></td>
-                        <td contenteditable="true" data-note="${id}"></td>`;
-        tbody.appendChild(tr); syncToStore();
-      });
-
-      syncFromStore();
     })();
   </script>
 </body>
