@@ -1,256 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0f" />
-  <title>Suryansh | Portfolio</title>
-  <style>
-    /* ====== Base ====== */
-    :root{
-      --bg:#0b0b0f;          /* inky black */
-      --panel:#121219;       /* panels/cards */
-      --muted:#9aa0a6;       /* secondary text */
-      --fg:#e6e6ea;          /* primary text */
-      --accent:#4de1ff;      /* neon cyan */
-      --accent-2:#a7ff4d;    /* neon lime */
-      --border:rgba(255,255,255,.08);
-      --radius:16px;
-      --shadow:0 10px 30px rgba(0,0,0,.4);
-    }
-    html,body{height:100%}
-    body{
-      margin:0; font:15px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--fg); background:linear-gradient(180deg,#050507,#0b0b0f 35%, #0b0b0f 100%);
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    .wrap{width:min(1100px,92vw); margin:0 auto}
-
-    /* ====== Header / Nav ====== */
-    header{position:sticky; top:0; z-index:100; backdrop-filter:blur(8px);}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0; border-bottom:1px solid var(--border);
-      background:rgba(5,5,8,.55);
-    }
-    .nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
-    .nav a{opacity:.85; padding:8px 10px; border-radius:10px; transition:opacity .2s, background .2s}
-    .nav a:hover,.nav a:focus{opacity:1; background:rgba(255,255,255,.06)}
-
-    /* ====== Hero ====== */
-    .hero{padding:70px 0 40px}
-    .logo{
-      font-weight:900; letter-spacing:.25em; text-transform:uppercase; font-size: clamp(36px, 8vw, 86px);
-      line-height:1; display:inline-block; position:relative; transform:skewX(-10deg);
-      background:linear-gradient(135deg, #d4d9e3 0%, #f2f5f9 35%, #aeb4bd 50%, #ffffff 55%, #9aa3ad 75%, #dfe3ea 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      filter:drop-shadow(0 10px 25px rgba(0,0,0,.45));
-      -webkit-text-stroke:1px rgba(255,255,255,.12);
-    }
-    .logo::after{ /* subtle razor edge */
-      content:""; position:absolute; inset:0; transform:skewX(10deg);
-      mask:linear-gradient(160deg, transparent 48%, rgba(255,255,255,.4) 50%, transparent 52%);
-      background:linear-gradient(160deg, rgba(255,255,255,.9), rgba(255,255,255,.1));
-      opacity:.35; pointer-events:none;
-    }
-    .tag{margin-top:14px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border:1px solid var(--border); border-radius:999px; color:var(--muted)}
-    .tag .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 18px var(--accent)}
-
-    /* ====== Sections ====== */
-    section{padding:42px 0}
-    .card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .grid{display:grid; gap:18px}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:860px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
-    h2{margin:0 0 14px; font-size: clamp(20px, 3vw, 28px)}
-    p{color:#cfd2d7}
-    .kicker{color:var(--accent); font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:12px}
-
-    /* ====== About ====== */
-    .about{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
-    @media (max-width:900px){.about{grid-template-columns:1fr}}
-    .about .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-    .stat{padding:16px; border:1px solid var(--border); border-radius:14px; text-align:center}
-    .stat b{display:block; font-size:22px}
-
-    /* ====== Projects ====== */
-    .project{padding:18px; display:flex; flex-direction:column; gap:10px}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted)}
-    .project .title{font-weight:700}
-    .badges{display:flex; gap:8px; align-items:center}
-
-    /* ====== Tracker ====== */
-    .tracker{padding:16px}
-    .tracker table{width:100%; border-collapse:collapse; font-size:14px}
-    .tracker th,.tracker td{border-bottom:1px solid var(--border); padding:10px; text-align:left}
-    .tracker tr:hover td{background:rgba(255,255,255,.03)}
-    .actions{display:flex; gap:10px; margin-top:12px}
-    button{appearance:none; border:1px solid var(--border); background:#14141b; color:var(--fg); padding:8px 12px; border-radius:12px; cursor:pointer}
-    button:hover{background:#1a1a22}
-
-    /* ====== Footer ====== */
-    footer{padding:40px 0 60px; color:var(--muted)}
-
-    /* accessibility */
-    @media (prefers-reduced-motion: reduce){ *{animation: none !important; transition: none !important} }
-    :focus-visible{outline:2px solid var(--accent)}
-    html{scroll-behavior:smooth}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suryansh | Portfolio</title>
+    <!-- Import a modern Google font for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- ====== Header ====== -->
-  <header>
-    <div class="wrap nav">
-      <a href="#top" class="logo-mini" aria-label="Suryansh Home" style="font-weight:800; letter-spacing:.12em">SY</a>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#connect">Connect</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation bar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="logo">Suryansh</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- ====== Hero ====== -->
-  <div id="top" class="wrap hero">
-    <div class="tag"><span class="dot"></span> KIIT • B.Tech CSE • 1st Year</div>
-    <h1 class="logo" aria-label="SURYANSH">SURYANSH</h1>
-    <p style="max-width:680px; margin-top:12px">I like building clean, fast, tiny web things. Learning Java + C, dabbling in design, and shipping small projects. This site is intentionally lightweight: no frameworks, no trackers, just HTML/CSS/JS.</p>
-  </div>
-
-  <!-- ====== About ====== -->
-  <section id="about">
-    <div class="wrap about">
-      <div class="card" style="padding:18px">
-        <div class="kicker">About Me</div>
-        <h2>Student • Builder • Tinkerer</h2>
-        <p>I'm Suryansh, a first-year CSE student at KIIT. I'm exploring core CS while practicing practical skills: writing clean code, documenting work, and collaborating. I enjoy front-end, automation scripts, and small utilities that save time.</p>
-        <div class="grid cols-3 stats" style="margin-top:12px">
-          <div class="stat"><b id="uptimeDays">0</b><span>Days Live</span></div>
-          <div class="stat"><b>0</b><span>Open Source PRs</span></div>
-          <div class="stat"><b>2</b><span>Languages (C, Java)</span></div>
+    <!-- Hero section -->
+    <section class="hero">
+        <!-- The dark overlay helps text stand out on the background image -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Hi, I'm Suryansh</h1>
+            <p class="subtitle">First&#8209;year CSE student exploring the endless possibilities of computing.</p>
+            <a href="#contact" class="cta">Connect with me</a>
         </div>
-      </div>
-      <div class="grid">
-        <div class="card project">
-          <div class="kicker">Now</div>
-          <div class="title">Learning Plan</div>
-          <p>Daily 60–90 mins of coding. Alternate C (fundamentals) and Java (OOP). Build tiny weekend projects, document everything.</p>
-          <div class="chips">
-            <span class="chip">#DSA-basics</span>
-            <span class="chip">#100DaysOfCode</span>
-            <span class="chip">#WriteDocs</span>
-          </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about" class="content-section about">
+        <h2>About Me</h2>
+        <p>I'm a first‑year student at <strong>KIIT University</strong> pursuing the core Computer Science &amp; Engineering curriculum. My curiosity drives me to explore every corner of this broad field and discover where my true passion lies.</p>
+        <p>Currently I'm learning Java and enjoying how it builds my understanding of object‑oriented programming. I love building small projects to solidify concepts and am always on the lookout for new challenges.</p>
+        <p>I believe in collaborative learning and am excited to connect with fellow learners, mentors and innovators. If you'd like to chat about technology or work together on a project, feel free to reach out!</p>
+    </section>
+
+    <!-- Projects section -->
+    <section id="projects" class="content-section projects">
+        <h2>Projects</h2>
+        <p>I'm actively working on personal projects to sharpen my skills. Watch this space for updates on what I'm building!</p>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact" class="content-section contact">
+        <h2>Contact</h2>
+        <p>If you'd like to get in touch, drop me an email at <a href="mailto:surydev.git@gmail.com">surydev.git@gmail.com</a> or connect on Discord at <strong>surydev5494</strong>.</p>
+        <div class="contact-links">
+            <a href="mailto:surydev.git@gmail.com" class="button-link">Email</a>
+            <!-- Discord link placeholder: replace '#' with your invite or profile link if available -->
+            <a href="#" class="button-link secondary">Discord</a>
         </div>
-        <div class="card project">
-          <div class="kicker">Skills</div>
-          <div class="title">Core Technologies</div>
-          <p>I'm focusing on building a strong foundation in core programming languages and web technologies.</p>
-           <div class="chips">
-            <span class="chip">Java</span>
-            <span class="chip">C</span>
-            <span class="chip">HTML5</span>
-            <span class="chip">CSS3</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Git & GitHub</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ====== Projects ====== -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="kicker">Projects</div>
-      <h2>Current & Upcoming Builds</h2>
-      <div class="grid cols-3">
-        <article class="card project" aria-labelledby="fed-title">
-          <div class="badges"><span class="chip" title="High Priority">High ⚡</span><span class="chip">Web</span></div>
-          <h3 id="fed-title" class="title">FED KIIT Hackathon</h3>
-          <p>Plan, design, and ship a minimal, functional prototype in 24–48 hours. Focus: usability and performance. Document approach, challenges, and learnings.</p>
-          <div class="chips">
-            <span class="chip">Problem Discovery</span>
-            <span class="chip">MVP in 24h</span>
-            <span class="chip">Public README</span>
-          </div>
-        </article>
-        <article class="card project">
-          <div class="badges"><span class="chip">CLI</span></div>
-          <div class="title">Campus Helper CLI</div>
-          <p>Tiny command-line tool: class schedule reminders, quick GPA calculator, and notes sync. Written in C/Java + a sprinkle of Bash.</p>
-          <div class="chips">
-            <span class="chip">Arg parsing</span><span class="chip">File I/O</span><span class="chip">Cross-plat</span>
-          </div>
-        </article>
-        <article class="card project">
-          <div class="badges"><span class="chip">Design</span></div>
-          <div class="title">Cybertruck-Style Nameplate</div>
-          <p>Create a vector logo of “SURYANSH” with sharp edges, metallic sheen, and export as SVG. Use it across projects.</p>
-          <div class="chips">
-            <span class="chip">SVG</span><span class="chip">Paths</span><span class="chip">Kerning</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Blog ====== -->
-  <section id="blog">
-    <div class="wrap">
-      <div class="kicker">Blog</div>
-      <h2>Thoughts & Articles</h2>
-      <div class="card" style="padding:18px; text-align:center;">
-        <p>Coming Soon! I'll be writing about my journey learning to code, project deep-dives, and tech I'm excited about.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Connect ====== -->
-  <section id="connect">
-    <div class="wrap grid cols-2">
-      <div class="card" style="padding:18px">
-        <div class="kicker">Connect</div>
-        <h2>Get in Touch</h2>
-        <p>Want to collaborate or review code? Ping me. Replace the placeholders below with your real links.</p>
-        <ul>
-          <li>Email: <a href="mailto:hello@suryansh.dev">hello@suryansh.dev</a> (placeholder)</li>
-          <li>GitHub: <a href="#">github.com/suryansh</a> (placeholder)</li>
-          <li>LinkedIn: <a href="#">/in/suryansh</a> (placeholder)</li>
-        </ul>
-      </div>
-      <div class="card" style="padding:18px">
-        <div class="kicker">Credits</div>
-        <h2>Build details</h2>
-        <p>Single HTML file. ~0 JS frameworks. Designed for low memory/CPU. You can copy this anywhere and it works.</p>
-        <ul>
-          <li>Dark, high-contrast, accessible</li>
-          <li>Responsive, mobile-first</li>
-          <li>No analytics, no cookies</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">© <span id="year"></span> Suryansh • Built with vanilla HTML/CSS/JS</div>
-  </footer>
-
-  <script>
-    // ====== Tiny JS: uptime, year ======
-    (function(){
-      const started = '2025-08-12T00:00:00+05:30'; // launch date; adjust if needed
-      const msPerDay = 24*60*60*1000;
-      const days = Math.max(0, Math.floor((Date.now() - new Date(started).getTime())/msPerDay));
-      document.getElementById('uptimeDays').textContent = days;
-      document.getElementById('year').textContent = new Date().getFullYear();
-    })();
-  </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Suryansh. Crafted with <span class="heart">&hearts;</span> and curiosity.</p>
+    </footer>
 </body>
 </html>
