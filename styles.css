@@ -101,9 +101,21 @@ body {
 }
 
 .hero-content h1 {
+  /* Default heading style for hero; overridden by .hero-title for graffiti look */
   font-size: 3rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
+}
+
+/* Graffiti‑style heading inspired by the Tesla Cybertruck hero text */
+.hero-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 6rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .subtitle {
